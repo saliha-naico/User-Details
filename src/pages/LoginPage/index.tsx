@@ -1,12 +1,11 @@
 import React, {  useEffect } from "react";
 import Auxillary from '../../hoc/Auxillary/Auxillary';
-import { Link } from 'react-router-dom';
 import ButtonComponent from '../../components/Button/Button';
 import { Container, Grid } from "@material-ui/core";
 import Label from '../../components/Label/Label';
 import { useForm } from "react-hook-form";
 import "./style.scss";
-import { useHistory } from "react-router-dom";
+import { useHistory,Link } from "react-router-dom";
 type FormData = {
   Username: string;
   Password: string;

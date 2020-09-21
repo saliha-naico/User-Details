@@ -5,8 +5,7 @@ import { Container, Grid } from "@material-ui/core";
 import Label from '../../components/Label/Label';
 import { useForm } from "react-hook-form";
 import "./RegistrationPage.scss";
-import { Link } from 'react-router-dom';
-
+import { useHistory,Link } from "react-router-dom";
 
 type userData = {
   FirstName: string;
@@ -15,15 +14,24 @@ type userData = {
   Username: string;
   Password: string;
   Mobile: number;
+  Title:string;
 };
 
 export default function Registeration() {
+  const history = useHistory();
   const { register, handleSubmit, errors} = useForm<userData>();
   const onSubmit = (data: userData) => {
-    console.log("data", data);
     localStorage.setItem('Username',data.Username);
     localStorage.setItem('Password',data.Password);
+    localStorage.setItem('Email',data.Email);
+    localStorage.setItem('Mobile', JSON.stringify(data.Mobile));
+    localStorage.setItem('FirstName',data.FirstName);
+    localStorage.setItem('LastName',data.LastName);
+    localStorage.setItem('Title',data.Title);
+      history.push('/');
   };
+
+
   return (
     <Auxillary>
       <Container maxWidth="sm">
@@ -33,6 +41,8 @@ export default function Registeration() {
           <Label label="Username">Username</Label>
             <input name="Username" type="text" ref={register({ required: true })} />
             {errors.Username && <p>Please Enter a valid Username.</p>}
+            <Label label="Title">Name Title</Label>
+            <input name="Title" type="text" ref={register()} />
             <Label label="FirstName">FirstName</Label>
             <input name="FirstName" type="text" ref={register({ required: true })} />
             {errors.FirstName && <p>Please Enter a valid FirstName.</p>}

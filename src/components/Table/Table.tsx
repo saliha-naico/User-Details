@@ -39,10 +39,24 @@ const TableComponent = (props: any) => {
     },
   });
   const classes = useStyles();
-  const [data, setdata] = useState([]);
+  const [data, setdata]:any = useState([]);
   useEffect(() => {
+    let User: any = {
+      "user": {
+        "username": localStorage.getItem('Username'),
+        "name": {
+          "title": localStorage.getItem('Title'),
+          "first": localStorage.getItem('FirstName'),
+          "last": localStorage.getItem('LastName')
+        },
+        "email": localStorage.getItem('Email'),
+        "password": localStorage.getItem('Password'),
+        "phone": localStorage.getItem('Mobile'),
+      },
+    };
+    let length=props.data.length;
+    props.data[length]=User;
     setdata(props.data);
-    console.log(data);
     }, [setdata]);
   return (
     <Auxillary>
